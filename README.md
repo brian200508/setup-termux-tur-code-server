@@ -1,5 +1,5 @@
 # setup-termux-tur-code-server
-Post install script for installing Termux User Repository (TUR), code-server and some developer stuff.
+Post install script for installing Termux User Repository (TUR), code-server (and/or AcodexX server) and some developer stuff.
 
 ## Steps
 ### Prerequisites
@@ -21,11 +21,19 @@ Install TUR with code-server and Termux Widget shortcuts.
 ```bash
 cd ~ && cp ~/storage/shared/Download/setup-termux-tur-code-server/install-code-server.sh . &&  chmod +x ~/install-code-server.sh && ./install-code-server.sh
 ```
+## Install Termux User Repository with AcodeX server
+Install TUR with code-server and Termux Widget shortcuts.
+
+```bash
+cd ~ && cp ~/storage/shared/Download/setup-termux-tur-code-server/install-acodex-server.sh . &&  chmod +x ~/install-acodex-server.sh && ./install-acodex-server.sh
+```
+
+
 
 ## Optionally remove this Git repository clone
 
 ```bash
-rm ~/install-code-server.sh
+rm -f ~/install-code-server.sh && rm -f ~/install-acodex-server.sh
 ```
 
 ```bash
@@ -35,6 +43,7 @@ rm -rf /sdcard/Download/setup-termux-tur-code-server
 Done.
 
 ## Projects referred
+ - AcodeX acode-plugin-acodex (https://github.com/bajrangCoder/acode-plugin-acodex)
  - code-server (https://github.com/coder/code-server)
  - Termux App (https://github.com/termux/termux-app)
  - Termux User Repository (https://github.com/termux-user-repository/tur)
