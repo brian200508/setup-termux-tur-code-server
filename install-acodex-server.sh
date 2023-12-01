@@ -35,13 +35,13 @@ npm i -g acodex-server
 echo "Adding AcodeX server to .bashrc for autostart..."
 echo '' >> ~/.bashrc
 echo '#Start AcodeX server if not running' >> ~/.bashrc
-echo 'if ps aux | grep -q "[a]codex-server" ; then echo "AcodeX server is already running." ; else acodex-server ; fi' >> ~/.bashrc
+echo 'if ps aux | grep -q "[a]codeX-server" ; then echo "AcodeX server is already running." ; else acodeX-server ; fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
 
 echo "Done :)"
 echo ""
 echo "Start AcodeX server with:"
-echo "    acodex-server"
+echo "    acodeX-server"
 echo ""
 echo "For automatically starting Termux with Acode app"
 echo "at least for SAMSUNG devices You can do the following:"
