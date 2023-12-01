@@ -12,22 +12,22 @@ pkg update -y
 pkg install -y tur-repo
 
 # shortcut
-echo "Setting up Termux Widget Debian shortcut..."
+echo "Setting up Termux Widget code-server shortcut..."
 cd ~
 mkdir $SHORTCUTS_DIR
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/debian-code-server.sh $SHORTCUTS_DIR
-chmod +x $REPO_DIR_TERMUX/$REPO_NAME/debian-code-server.sh
+cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/code-server.sh $SHORTCUTS_DIR
+chmod +x $REPO_DIR_TERMUX/$REPO_NAME/code-server.sh
 mkdir $SHORTCUTS_DIR/icons
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/icons/debian-code-server.sh.png $SHORTCUTS_DIR/icons
+cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/icons/code-server.sh.png $SHORTCUTS_DIR/icons
 
-# install Proot-Distro Debian
+# install developoer stuff
 echo "Setting up generic developer stuff..."
-pkg update -y
+pkg update && pkg upgrade -y
 pkg install -y curl git build-essential nodejs-lts python wget
 
 # install code-server
 echo "Setting up code-server..."
-pkg update -y
+#pkg update -y
 pkg install -y code-server
 
 # add to .bashrc
