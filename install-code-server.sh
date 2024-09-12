@@ -51,6 +51,8 @@ echo '' >> ~/.bashrc
 
 echo "Done :)"
 echo ""
+yes_or_no "Delete the cloned Git repo ($REPO_DIR_TERMUX/$REPO_NAME)?" && rm -rf $REPO_DIR_TERMUX/$REPO_NAME
+echo ""
 echo "Start code-server with:"
 echo "    code-server --auth none --port 13880"
 echo ""
