@@ -34,7 +34,9 @@ pkg install -y code-server
 echo "Adding code-server to .bashrc for autostart..."
 echo '' >> ~/.bashrc
 echo '#Start code-server if not running' >> ~/.bashrc
-echo 'if ps aux | grep -q "[c]ode-server --auth none --port 13880" ; then echo "code-server is already running." ; else code-server --auth none --port 13880 ; fi' >> ~/.bashrc
+
+
+echo 'if [ $( ps aux | grep -c "[c]ode-server --auth none --port 13880" ) -gt 1 ] ; then echo "code-server is already running." ; else code-server --auth none --port 13880 ; fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
 
 echo "Done :)"
