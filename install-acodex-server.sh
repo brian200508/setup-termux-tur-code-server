@@ -4,6 +4,16 @@ REPO_DIR_TERMUX=/sdcard/Download
 REPO_NAME=setup-termux-tur-code-server
 SHORTCUTS_DIR=.shortcuts
 
+function yes_or_no {
+    while true; do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) return 0  ;;  
+            [Nn]*) echo "Aborted" ; return  1 ;;
+        esac
+    done
+}
+
 # Termux User Repository 
 termux-setup-storage
 echo "Setting up Termux User Repository (TUR)..."
