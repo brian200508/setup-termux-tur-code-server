@@ -50,6 +50,7 @@ echo 'if [ $( ps aux | grep -c "acodeX-server" ) -gt 1 ] ; then echo "AcodeX ser
 echo '' >> ~/.bashrc
 
 echo "Done :)"
+yes_or_no "Delete the cloned Git repo ($REPO_DIR_TERMUX/$REPO_NAME)?" && rm -rf $REPO_DIR_TERMUX/$REPO_NAME
 echo ""
 echo "Start AcodeX server with:"
 echo "    acodeX-server"
