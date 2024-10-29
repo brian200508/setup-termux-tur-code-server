@@ -34,7 +34,8 @@ curl -sL https://raw.githubusercontent.com/bajrangCoder/acode-plugin-acodex/main
 echo "Adding AcodeX-Server to .bashrc for autostart..."
 echo '' >> ~/.bashrc
 echo '#Start AcodeX-Server if not running' >> ~/.bashrc
-echo 'if [ $( ps aux | grep -c "acodeX-server" ) -gt 1 ] ; then echo "AcodeX-Server is already running." ; else acodeX-server ; fi' >> ~/.bashrc
+echo 'cmdAcodeXServer="acodeX-server"' >> ~/.bashrc
+echo 'if [ $( ps aux | grep -c "acodeX-server" ) -gt 1 ] ; then echo "AcodeX-Server is already running." ; else $cmdAcodeXServer & fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
 
 echo "Done :)"
