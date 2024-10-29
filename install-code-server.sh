@@ -1,18 +1,6 @@
 #!/bin/bash
-REPO_DIR_DISTRO=/sdcard/Download
-REPO_DIR_TERMUX=/sdcard/Download
-REPO_NAME=setup-termux-tur-code-server
-SHORTCUTS_DIR=.shortcuts
-
-function yes_or_no {
-    while true; do
-        read -p "$* [y/n]: " yn
-        case $yn in
-            [Yy]*) return 0  ;;  
-            [Nn]*) echo "Aborted" ; return  1 ;;
-        esac
-    done
-}
+GITHUB_BRANCH=https://raw.githubusercontent.com/brian200508/setup-termux-tur-code-server/main/
+SHORTCUTS_DIR=~/.shortcuts
 
 # Termux User Repository 
 termux-setup-storage
@@ -25,12 +13,12 @@ pkg install -y tur-repo
 echo "Setting up Termux Widget code-server shortcut..."
 cd ~
 mkdir $SHORTCUTS_DIR
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/code-server.sh $SHORTCUTS_DIR
-chmod +x $REPO_DIR_TERMUX/$REPO_NAME/code-server.sh
+curl -Lf $GITHUB_BRANCH/shortcuts/code-server.sh -o $SHORTCUTS_DIR/code-server.sh
+chmod +x $SHORTCUTS_DIR/code-server.sh
 mkdir $SHORTCUTS_DIR/icons
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/icons/code-server.sh.png $SHORTCUTS_DIR/icons
+curl -Lf $GITHUB_BRANCH/shortcuts/icons/code-server.sh.png -o $SHORTCUTS_DIR/icons/code-server.sh.png
 
-# install developoer stuff
+# install developer stuff
 echo "Setting up generic developer stuff..."
 pkg update && pkg upgrade -y
 pkg install -y curl git build-essential nodejs-lts python wget
@@ -44,8 +32,6 @@ pkg install -y code-server
 echo "Adding code-server to .bashrc for autostart..."
 echo '' >> ~/.bashrc
 echo '#Start code-server if not running' >> ~/.bashrc
-
-
 echo 'if [ $( ps aux | grep -c "[c]ode-server --auth none --port 13880" ) -gt 1 ] ; then echo "code-server is already running." ; else code-server --auth none --port 13880 ; fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
 

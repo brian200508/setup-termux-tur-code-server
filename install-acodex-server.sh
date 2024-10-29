@@ -1,18 +1,6 @@
 #!/bin/bash
-REPO_DIR_DISTRO=/sdcard/Download
-REPO_DIR_TERMUX=/sdcard/Download
-REPO_NAME=setup-termux-tur-code-server
-SHORTCUTS_DIR=.shortcuts
-
-function yes_or_no {
-    while true; do
-        read -p "$* [y/n]: " yn
-        case $yn in
-            [Yy]*) return 0  ;;  
-            [Nn]*) echo "Aborted" ; return  1 ;;
-        esac
-    done
-}
+GITHUB_BRANCH=https://raw.githubusercontent.com/brian200508/setup-termux-tur-code-server/main/
+SHORTCUTS_DIR=~/.shortcuts
 
 # Termux User Repository 
 termux-setup-storage
@@ -22,37 +10,36 @@ pkg update -y
 pkg install -y tur-repo
 
 # shortcut
-echo "Setting up Termux Widget Debian shortcut..."
+echo "Setting up Termux Widget AcodeX-Server shortcut..."
 cd ~
 mkdir $SHORTCUTS_DIR
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/acodex-server.sh $SHORTCUTS_DIR
-chmod +x $REPO_DIR_TERMUX/$REPO_NAME/acodex-server.sh
+curl -Lf $GITHUB_BRANCH/shortcuts/acodex-server.sh -o $SHORTCUTS_DIR/acodex-server.sh
+chmod +x $SHORTCUTS_DIR/acodex-server.sh
 mkdir $SHORTCUTS_DIR/icons
-cp $REPO_DIR_TERMUX/$REPO_NAME/shortcuts/icons/acodex-server.sh.png $SHORTCUTS_DIR/icons
+curl -Lf $GITHUB_BRANCH/shortcuts/icons/acodex-server.sh.png -o $SHORTCUTS_DIR/icons/acodex-server.sh.png
 
-# install deverloper stuff
+# install developer stuff
 echo "Setting up generic developer stuff..."
 pkg update && pkg upgrade -y
 pkg install -y curl git build-essential nodejs-lts python wget
 
-# install AcodeX server
-echo "Setting up AcodeX server..."
+# install AcodeX-Server
+echo "Setting up AcodeX-Server..."
 #pkg update && pkg upgrade -y
 #npm i -g acodex-server
 curl -sL https://raw.githubusercontent.com/bajrangCoder/acode-plugin-acodex/main/installServer.sh | bash
 
 
 # add to .bashrc
-echo "Adding AcodeX server to .bashrc for autostart..."
+echo "Adding AcodeX-Server to .bashrc for autostart..."
 echo '' >> ~/.bashrc
-echo '#Start AcodeX server if not running' >> ~/.bashrc
-echo 'if [ $( ps aux | grep -c "acodeX-server" ) -gt 1 ] ; then echo "AcodeX server is already running." ; else acodeX-server ; fi' >> ~/.bashrc
+echo '#Start AcodeX-Server if not running' >> ~/.bashrc
+echo 'if [ $( ps aux | grep -c "acodeX-server" ) -gt 1 ] ; then echo "AcodeX-Server is already running." ; else acodeX-server ; fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
 
 echo "Done :)"
-yes_or_no "Delete the cloned Git repo ($REPO_DIR_TERMUX/$REPO_NAME)?" && rm -rf $REPO_DIR_TERMUX/$REPO_NAME
 echo ""
-echo "Start AcodeX server with:"
+echo "Start AcodeX-Server with:"
 echo "    acodeX-server"
 echo ""
 echo "For automatically starting Termux with Acode app"
